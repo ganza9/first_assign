@@ -1,54 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import UserInput from './UserInput/UserInput.js';
-import UserOutput from './UserOutput/UserOutput.js';
+
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   state = {
-    inputs: [
-      {name: 'gLove'}
-    ],
-    outputs: [
-      {paragraph: 'testOne'},
-      {paragraph: 'testTwo'}
-    ]
+    username: "G Baby"
   }
 
-  enterNameHandler = (event) => {
-    this.setState( {
-      inputs: [
-        { name: event.target.value }
-      ]
-    })
+  usernameChangedHandler = (event) => {
+    this.setState({username: event.target.value})
   }
-
-  typeParagraphHandler = (event) => {
-    this.setState( {
-      outputs: [
-        { paragraph: event.target.value },
-        { paragraph: event.target.value }       
-      ]
-    })
-  }
-
-
 
   render() {
     return (
       <div className="input">
         <h1>First Assignment</h1>
-        <UserInput
-        name={this.state.inputs[0].name}
-        changed={this.enterNameHandler} />
 
-        <UserOutput 
-         paragraph = {this.state.outputs[0].paragraph}
-         entered={this.typeParagraphHandler}
-         />
-        <UserOutput
-          paragraph={this.state.outputs[1].paragraph}
-          entered={this.typeParagraphHandler}/>
+        <UserInput
+            changed={this.usernameChangedHandler}
+            currentName={this.state.username}/>
+        <UserOutput userName={this.state.username}/>
+        <UserOutput userName={this.state.username}/>
+
       </div>
     );
   }
